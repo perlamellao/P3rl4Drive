@@ -74,8 +74,7 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+You need to install python requirements and run mainserver and npm in p3rl4vault/
 
 ### Prerequisites
 You need node installed
