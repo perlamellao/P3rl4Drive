@@ -9,7 +9,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/perlamellao/P3rl4Drive">
-    <img src="backend/p3rl4vault/public/LOGO.png" alt="Logo" width="80" height="80">
+    <img src="p3rl4vault/public/LOGO.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">project_title</h3>
