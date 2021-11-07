@@ -137,7 +137,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Jaime Villa - [@twitter_handle](https://https://twitter.com/jaime_P3rl4) - yocrackgta@gmail.com
+Jaime Villa - [@jaime_P3rl4](https://https://twitter.com/jaime_P3rl4) - yocrackgta@gmail.com
 
 Project Link: [https://github.com/perlamellao/P3rl4Drive](https://github.com/perlamellao/P3rl4Drive)
 
