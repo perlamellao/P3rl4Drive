@@ -21,10 +21,8 @@ function Login({ setUser, error}) {
           username,
           password
         })
-        console.log(user)
         setUser(user)
     }
-    console.log(error)
     if (error === 1) {
         pop = <Popup message={errorUsr}/>
     }else if (error === 2) {
@@ -54,7 +52,7 @@ function Login({ setUser, error}) {
     )
 }
 Login.propTypes = {
-    setToken: PropTypes.func.isRequired
+    setUser: PropTypes.func.isRequired
   };
 
 export default Login
