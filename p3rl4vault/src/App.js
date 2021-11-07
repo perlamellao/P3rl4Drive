@@ -5,20 +5,25 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 
 function App() {
-  const [token, setToken] = useState();
-  if(!token || token == "ERROR") {
-    return <Login setToken={setToken} />
+  const [user, setUser] = useState();
+  if(!user) {
+    return <Login setUser={setUser} error={0} />
+  }else if(user === "ERROR"){
+    return <Login setUser={setUser} error={1} />
+  }else if(user === "CLOSED_SESSION"){
+    return <Login setUser={setUser} error={2} />
+  
+  }else{
+    return(
+      <BrowserRouter>
+        
+          <Switch>
+            <Navbar setUser={setUser}/>
+            <Route path='/login' exact component={Login}/>
+          </Switch>
+      </BrowserRouter>
+    );
   }
-
-  return(
-    <BrowserRouter>
-      
-        <Switch>
-          <Navbar setToken={setToken}/>
-          <Route path='/login' exact component={Login}/>
-        </Switch>
-    </BrowserRouter>
-  );
 }
 
 export default App;
