@@ -11,17 +11,24 @@ body {
 }
 
 .box {
-    width: 500px;
+    width: 100%;
     padding: 40px;
     position: absolute;
     top: 50%;
-    left: 55%;
+    left: 50%;
     background: #191919;
     ;
     border-radius: 25px;
     text-align: center;
     transition: 0.25s;
-    margin-top: 100px
+    margin-top: 20%
+}
+@media (max-width: 800px) {
+    .box {
+        top: 10%;
+        left: 1%;
+        
+    }
 }
 .logo {
     height: 10rem;
@@ -43,6 +50,7 @@ body {
     transition: 0.25s
 }
 
+
 .box h1 {
     color: white;
     text-transform: uppercase;
@@ -53,6 +61,13 @@ body {
 .box input[type="password"]:focus {
     width: 300px;
     border-color: #2ecc71
+}
+@media (max-width: 600px) {
+    .box input[type="text"]:focus,
+    .box input[type="password"]:focus {
+        width: 270px;
+        border-color: #2ecc71
+    }
 }
 
 .box input[type="submit"] {

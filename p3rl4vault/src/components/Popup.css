@@ -1,7 +1,11 @@
 .msg{
-    margin-left: 30rem;
+    margin-left: 37%;
 }
-
+@media (max-width: 600px) {
+    .msg{
+        margin-left: 5%;
+    }
+}
 .icon{
     font-size: 1.25rem
 }
