@@ -4,13 +4,14 @@
 /p3rl4vault/node_modules
 /p3rl4vault/.pnp
 /p3rl4vault/.pnp.js
-
+/backend/__pycache__
+.vscode
 # testing
 /p3rl4vault/coverage
-
+test.*
 # production
 /p3rl4vault/build
-
+.env
 # misc
 .DS_Store
 .env.local
