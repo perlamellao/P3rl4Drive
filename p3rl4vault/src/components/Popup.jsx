@@ -5,7 +5,7 @@ function Popup({ message }) {
     return (
         <div className="alert alert-danger d-flex align-items-center" role="alert">
             <div className="msg">
-                <i class='bx bxs-error icon'></i>
+                <i className='bx bxs-error icon'></i>
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{message}</span>
             </div>
         </div>
