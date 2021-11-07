@@ -9,13 +9,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/perlamellao/P3rl4Drive">
-    <img src="p3rl4vault/public/LOGO.png" alt="Logo" width="80" height="80">
+    <img src="p3rl4vault/public/LOGO.png" alt="Logo" width="120" height="120">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">P3RL4DRIVE</h3>
 
   <p align="center">
-    project_description
+    Its like Google Drive But P3rl4 :)
     <br />
     ·
     <a href="https://github.com/perlamellao/P3rl4Drive/issues">Report Bug</a>
