@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import Login from './components/Login';
 
-import PopUp from './PopUp';
-import Header from './Header';
-import Inicio from './Inicio';
 
 function App() {
+  const [token, setToken] = useState();
+  if(!token || token == "ERROR") {
+    return <Login setToken={setToken} />
+  }
+
   return(
     <BrowserRouter>
-      <Header />
+        <div>tuputamadre</div>
         <Switch>
-          <Route path='/' exact component={Inicio}/>
-          <Route path='/popup' exact component={PopUp}/>
+          <Route path='/login' exact component={Login}/>
         </Switch>
     </BrowserRouter>
   );
