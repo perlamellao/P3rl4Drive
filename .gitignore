@@ -8,7 +8,7 @@
 .vscode
 # testing
 /p3rl4vault/coverage
-test.*
+test*
 # production
 /p3rl4vault/build
 .env
