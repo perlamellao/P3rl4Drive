@@ -5,7 +5,7 @@ config = dotenv_values(".env")
 
 client = MongoClient("mongodb+srv://"+config['USER']+":"+config['KEY']+"@"+config['URL'])
 
-db = client['p3rl4Vault']
+db = client[config['DATABASE']]
 
 col = db['usuarios']
 

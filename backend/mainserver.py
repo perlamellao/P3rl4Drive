@@ -2,9 +2,10 @@ from flask import Flask, request, jsonify
 import hashlib
 from flask_cors import CORS
 from login import get_user
-
+from files import get_files
 server = Flask(__name__)
 CORS(server)
+
 
 
 
@@ -12,6 +13,18 @@ CORS(server)
 def index():
     return('lesgooo')
 
+@server.route('/singup', methods=['POST'])
+def singup():
+    data = request.get_json()
+    
+    return('lesgooo')
+
+
+@server.route('/files', methods=['POST'])
+def files():
+    id = request.json['id']
+    files = get_files(id)
+    return(files)
 
 
 @server.route('/login', methods=['POST'])
@@ -23,7 +36,7 @@ def login():
         return("ERROR") 
     else:
         if user['password'] == password:
-            return("letoken")
+            return(str(user['_id']))
         else:
             return("ERROR")
 
