@@ -1,15 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import PropTypes from 'prop-types'
+import { bake_cookie } from 'sfcookies'
 import './Login.css'
 import Popup from './Popup'
 
 async function loginUser(credentials) {
     const res = await axios.post(`http://localhost:8080/login`, {credentials})
+    
     return res.data
 }
 
-function Login({ setUser, error}) {
+function Login({error}) {
     const [username, setUserName] = useState()
     const [password, setPassword] = useState()
     let pop = ''
@@ -21,12 +22,17 @@ function Login({ setUser, error}) {
           username,
           password
         })
-        setUser(user)
+        bake_cookie("session_id",user)
+        window.location.reload(false)
+        
     }
     if (error === 1) {
         pop = <Popup message={errorUsr}/>
     }else if (error === 2) {
         pop = <Popup message={closedSes}/>
+    }
+    const singUp = () => {
+        bake_cookie("session_id","SINGUP")
     }
 
     return (
@@ -41,8 +47,8 @@ function Login({ setUser, error}) {
                             <p className="text-muted"> Introduce tu usuario y contraseña</p>
                             <input type="text" placeholder="Usuario" onChange={e => setUserName(e.target.value)} />
                             <input type="password" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} />
-                            <a className="forgot text-muted" href="/#">No tienes Cuenta Todavia?</a>
-                            <input type="submit" defaultValue="Login" href="/lel" />
+                            <a className="forgot text-muted" href="/#" onClick={singUp}>No tienes Cuenta Todavia?</a>
+                            <input type="submit" defaultValue="Login" href="/#" />
                         </form>
                         </div>
                     </div>
@@ -51,8 +57,5 @@ function Login({ setUser, error}) {
         </div>
     )
 }
-Login.propTypes = {
-    setUser: PropTypes.func.isRequired
-  };
 
 export default Login

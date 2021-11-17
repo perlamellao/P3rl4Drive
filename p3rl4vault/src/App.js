@@ -1,29 +1,35 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { read_cookie } from 'sfcookies'
 
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import Files from './components/Files';
+import Singup from './components/Singup';
 
 function App() {
-  const [user, setUser] = useState();
-  if(!user) {
-    return <Login setUser={setUser} error={0} />
-  }else if(user === "ERROR"){
-    return <Login setUser={setUser} error={1} />
-  }else if(user === "CLOSED_SESSION"){
-    return <Login setUser={setUser} error={2} />
-  
-  }else{
-    return(
-      <BrowserRouter>
-        
-          <Switch>
-            <Navbar setUser={setUser}/>
-            <Route path='/login' exact component={Login}/>
-          </Switch>
-      </BrowserRouter>
-    );
+  if(read_cookie('session_id') === "ERROR"){
+    return <Login error={1} />
+  }else if(read_cookie('session_id') === "CLOSED_SESSION"){
+    return <Login error={2} />
+  }else if(read_cookie('session_id') === "SINGUP"){
+    return <Singup/>
+  }else if(read_cookie('session_id').length < 10) {
+    return <Login error={0} />
   }
+  
+  return(
+    
+    <BrowserRouter>
+        <Navbar/>
+        <Switch>
+          <Route exact path='/files' component={Files}  />
+          <Route exact path='/login' component={Login} />
+          
+        </Switch>
+    </BrowserRouter>
+  );
+  
 }
 
 export default App;
