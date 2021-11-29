@@ -99,6 +99,7 @@ You need node installed
     USER=*****
     KEY=*****
     URL=*****
+    DATABASE=*****
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
