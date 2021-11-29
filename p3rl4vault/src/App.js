@@ -13,7 +13,7 @@ function App() {
   }else if(read_cookie('session_id') === "CLOSED_SESSION"){
     return <Login error={2} />
   }else if(read_cookie('session_id') === "SINGUP"){
-    return <Singup/>
+    return <Singup />
   }else if(read_cookie('session_id').length < 10) {
     return <Login error={0} />
   }

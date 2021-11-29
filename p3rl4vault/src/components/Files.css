@@ -6,14 +6,15 @@
 .cardS{
   padding: 2rem;
 }
+
 .dbutton{
   color: #4723D9;
   font-size: 3rem;
 }
+
 .dropbutton{
   font-size: 3rem;
 }
-
 
 .spinner{
   position: absolute;

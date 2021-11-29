@@ -33,6 +33,7 @@ function Login({error}) {
     }
     const singUp = () => {
         bake_cookie("session_id","SINGUP")
+        window.location.reload(false)
     }
 
     return (
