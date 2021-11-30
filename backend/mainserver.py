@@ -3,6 +3,7 @@ import hashlib
 from flask_cors import CORS
 from login import get_user
 from files import get_files
+from singup import singupap
 server = Flask(__name__)
 CORS(server)
 
@@ -15,11 +16,10 @@ def index():
 
 @server.route('/singup', methods=['POST'])
 def singup():
-    data = request.get_json()
+    login = request.json['credentials']
+    singupap(login['username'].lower(), hashlib.sha256(login['password'].encode('utf-8')).hexdigest())
+    return('ERROR')
     
-    return('lesgooo')
-
-
 @server.route('/files', methods=['POST'])
 def files():
     id = request.json['id']

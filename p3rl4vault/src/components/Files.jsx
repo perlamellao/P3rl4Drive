@@ -4,11 +4,6 @@ import './Files.css'
 import { read_cookie } from 'sfcookies'
 
 
-
-
-
-
-
 function Files() {
     const [cards, setCards] = useState(null)
     const id = read_cookie('session_id')
@@ -32,29 +27,37 @@ function Files() {
             </div>
         )
     }
+    const sortNames = (arr) => {
+        arr.sort(function (a, b) {
+            if (a.name < b.name) { return -1; }
+            if (a.name > b.name) { return 1; }
+            return 0;
+        })
+        setCards(arr)
+    
+    }
+    console.log(cards)
     return (
         
         <div className="file">
-            <div class="dropdown dropbutton">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <div className="dropdown dropbutton">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     Ordenar Por
                 </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Fecha</a></li>
-                    <li><a class="dropdown-item" href="#">Nombre</a></li>
-                    <li><a class="dropdown-item" href="#">Tupuv2</a></li>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a className="dropdown-item" href="/files/#" >Fecha</a></li>
+                    <li><a className="dropdown-item" href="/files/#" onClick={sortNames.bind(this, cards)}>Nombre</a></li>
                 </ul>
             </div>
             <div className="row row-cols-1 row-cols-md-3 g-3">
                 {
-                    cards.map(name => 
+                    cards.map(name =>
                         <div className="col">
                             <div className="card cardS">
                                 <h5 className="card-title text-center">{name}</h5>
                                 <a href="/files/#" className="text-center"><i className='bx bx-download dbutton'></i></a>
                             </div>
                         </div>
-
                     )
                 }
             </div>

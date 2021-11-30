@@ -50,6 +50,22 @@ a {
     font-size: 2rem;
     cursor: pointer
 }
+.upload_button{
+    margin-top: top;
+    display: flex;
+    cursor: pointer
+}
+
+.upload_button button{
+    border-radius: 1rem;
+    background-color: var(--first-color);
+    color: var(--white-color);
+    font-size: 1rem;
+}
+.upload_button button:hover{
+    outline-color: var(--first-color-light);
+    color: var(--first-color-light);
+}
 
 .header_img {
     width: 35px;

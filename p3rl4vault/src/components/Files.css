@@ -1,6 +1,6 @@
 .file {
   position: relative;
-  margin: 10% 0 0 0;
+  margin: 4% 4% 0% 4%;
 }
 
 .cardS{
@@ -20,4 +20,10 @@
   position: absolute;
   margin-top: 20%;
   left: 50%;
+}
+
+@media (max-width: 600px) {
+  .file{
+    margin: 10% 2% 2% 2%;
+  }
 }
