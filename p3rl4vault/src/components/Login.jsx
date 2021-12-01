@@ -5,7 +5,7 @@ import './Login.css'
 import Popup from './Popup'
 
 async function loginUser(credentials) {
-    const res = await axios.post(`http://localhost:8080/login`, {credentials})
+    const res = await axios.post(`http://p3rl4.me:8080/login`, {credentials})
     
     return res.data
 }
