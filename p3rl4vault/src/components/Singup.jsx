@@ -5,7 +5,7 @@ import { delete_cookie, bake_cookie } from 'sfcookies'
 
 
 async function singUpUser(credentials) {
-    const res = await axios.post(`http://p3rl4.me:8080/singup`, {credentials})
+    const res = await axios.post(`http://p3rl4.me:8020/singup`, {credentials})
     
     return res.data
 }

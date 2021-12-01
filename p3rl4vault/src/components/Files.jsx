@@ -9,7 +9,7 @@ function Files() {
     const id = read_cookie('session_id')
 
     useEffect(() => {
-        axios.post(`http://p3rl4.me:8080/files`, {id}).then(
+        axios.post(`http://p3rl4.me:8020/files`, {id}).then(
             (response) => {
                 //convert response from an objext to an array
                 let arr = []
