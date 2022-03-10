@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Files from './components/Files';
 import Singup from './components/Singup';
 
+
 function App() {
   if(read_cookie('session_id') === "ERROR"){
     return <Login error={1} />
@@ -25,7 +26,6 @@ function App() {
         <Switch>
           <Route exact path='/files' component={Files}  />
           <Route exact path='/login' component={Login} />
-          
         </Switch>
     </BrowserRouter>
   );

@@ -9,7 +9,7 @@ function Files() {
     const id = read_cookie('session_id')
 
     useEffect(() => {
-        axios.post(`http://p3rl4.me:8020/files`, {id}).then(
+        axios.post(`http://127.0.0.1:8020/files`, {id}).then(
             (response) => {
                 //convert response from an objext to an array
                 let arr = []
@@ -38,8 +38,42 @@ function Files() {
     }
     console.log(cards)
     return (
-        
         <div className="file">
+            <div>
+                <div>
+                    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#upload">
+                        Subir archivos
+                    </button>
+                </div>
+                
+                <div className="modal fade" id="upload" tabIndex={-1} aria-labelledby="popup" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="popup">Subir Archivos</h5>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                            </div>
+                            <div className="modal-body">
+                                <form action="/upload">
+                                    <div className="mb-3">
+                                        <label for="formFile" class="form-label">Elige el Archivo a subir</label>
+                                        <input className="form-control" type="file" id="formFile"/>
+                                        <div className="form-button-div">
+                                            <button type="submit" className="form-button btn btn-success">
+                                                Aceptar
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div className="dropdown dropbutton">
                 <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     Ordenar Por

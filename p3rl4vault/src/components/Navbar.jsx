@@ -16,10 +16,6 @@ function Navbar() {
         <div>
             <header className={toggleNav ? "header" : "header body-pd"} id="header">
                 <div className="header_toggle"> <i onClick={handleToggle} className={toggleNav ? "bx bx-menu" : "bx bx-x"} id="header-toggle" /> </div>
-                <form className="d-flex upload_button">
-                    <button className="btn" type="submit">Subir Archivos</button>
-                </form>
-
                 <div className="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt="" /> </div>
             </header>
             <div className={toggleNav ? "l-navbar" : "l-navbar show"} id="nav-bar">

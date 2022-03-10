@@ -12,13 +12,15 @@ CORS(server)
 
 @server.route('/')
 def index():
-    return('lesgooo')
+    return('La API esta funcionando')
 
 @server.route('/singup', methods=['POST'])
 def singup():
     login = request.json['credentials']
     singupap(login['username'].lower(), hashlib.sha256(login['password'].encode('utf-8')).hexdigest())
-    return('ERROR')
+    user = get_user(login['username'].lower())
+    
+    return(str(user['_id']))
     
 @server.route('/files', methods=['POST'])
 def files():
@@ -42,4 +44,4 @@ def login():
 
 
 if __name__ == '__main__':
-    server.run(port=8080, debug=True)
+    server.run(port=8020, debug=True)
