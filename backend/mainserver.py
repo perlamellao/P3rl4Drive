@@ -26,7 +26,13 @@ def singup():
 def files():
     id = request.json['id']
     files = get_files(id)
-    return(files)
+    return(jsonify(files))
+
+
+@server.route('/files/upload', methods=['POST'])
+def filesupload():
+    print(request.json)
+    return("OK")
 
 
 @server.route('/login', methods=['POST'])
@@ -35,7 +41,7 @@ def login():
     user = get_user(login['username'].lower())
     password = hashlib.sha256(login['password'].encode('utf-8')).hexdigest()
     if user is None:
-        return("ERROR") 
+        return("ERROR")
     else:
         if user['password'] == password:
             return(str(user['_id']))

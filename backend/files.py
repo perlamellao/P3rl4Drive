@@ -1,20 +1,22 @@
-from pymongo import MongoClient
-import json 
+import os
 
-from dotenv import dotenv_values
-config = dotenv_values(".env")
-client = MongoClient("mongodb+srv://"+config['USER']+":"+config['KEY']+"@"+config['URL'])
-db = client[config['DATABASE']]
 
+
+
+
+def upload_file(file, filename):
+    pass
+    
+    
 def get_files(id):
-    total = []
-    col = db[id]
-    for doc in col.find():
-        total.append(doc['filename'])
-    total = dict(zip(range(0,len(total)), total))
-    return total
-
-
+    files = []
+    init_path = os.getcwd()
+    os.chdir("files/{}".format(id))
+    for i in os.listdir():
+        files.append(i)
+    
+    os.chdir(init_path)
+    return(files)
 
 
 
