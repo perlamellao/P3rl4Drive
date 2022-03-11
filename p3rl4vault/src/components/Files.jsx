@@ -11,12 +11,7 @@ function Files() {
     useEffect(() => {
         axios.post(`http://127.0.0.1:8020/files`, {id}).then(
             (response) => {
-                //convert response from an objext to an array
-                let arr = []
-                for (let key in response.data) {
-                    arr.push(response.data[key])
-                }
-                setCards(arr)
+                setCards(response.data)
             }
         )
     }, [id])
@@ -27,19 +22,24 @@ function Files() {
             </div>
         )
     }
-    const sortNames = (arr) => {
-        arr.sort(function (a, b) {
-            if (a.name < b.name) { return -1; }
-            if (a.name > b.name) { return 1; }
-            return 0;
-        })
-        setCards(arr)
-    
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        const url = 'http://127.0.0.1:8020/files/upload';
+
+        const fileInput = document.querySelector('#formFile');
+        var reader = new FileReader();
+        const file = fileInput.files[0];
+        reader.readAsDataURL(file);
+        axios.post(url, {"filename":file.name,"b64":reader.result, id}).then(
+            (response) => {
+                console.log(response)
+            }
+        ) 
     }
-    console.log(cards)
     return (
         <div className="file">
-            <div>
+            <div className="modal-button">
                 <div>
                     <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#upload">
                         Subir archivos
@@ -54,9 +54,9 @@ function Files() {
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                             </div>
                             <div className="modal-body">
-                                <form action="/upload">
+                                <form onSubmit={handleSubmit}>
                                     <div className="mb-3">
-                                        <label for="formFile" class="form-label">Elige el Archivo a subir</label>
+                                        <label htmlFor="formFile" className="form-label">Elige el Archivo a subir</label>
                                         <input className="form-control" type="file" id="formFile"/>
                                         <div className="form-button-div">
                                             <button type="submit" className="form-button btn btn-success">
@@ -65,6 +65,7 @@ function Files() {
                                         </div>
                                         
                                     </div>
+                                    
                                 </form>
                             </div>
                             <div className="modal-footer">
@@ -74,22 +75,14 @@ function Files() {
                     </div>
                 </div>
             </div>
-            <div className="dropdown dropbutton">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ordenar Por
-                </button>
-                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a className="dropdown-item" href="/files/#" >Fecha</a></li>
-                    <li><a className="dropdown-item" href="/files/#" onClick={sortNames.bind(this, cards)}>Nombre</a></li>
-                </ul>
-            </div>
-            <div className="row row-cols-1 row-cols-md-3 g-3">
+
+            <div className="row row-cols-1 row-cols-md-4 g-3 card-div">
                 {
                     cards.map(name =>
                         <div className="col">
                             <div className="card cardS">
                                 <h5 className="card-title text-center">{name}</h5>
-                                <a href="/files/#" className="text-center"><i className='bx bx-download dbutton'></i></a>
+                                <a href="" className="text-center"><i className='bx bx-download dbutton'></i></a>
                             </div>
                         </div>
                     )

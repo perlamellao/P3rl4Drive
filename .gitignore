@@ -5,6 +5,7 @@
 /p3rl4vault/.pnp
 /p3rl4vault/.pnp.js
 /backend/__pycache__
+/backend/files/
 .vscode
 # testing
 /p3rl4vault/coverage
