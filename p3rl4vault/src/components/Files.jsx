@@ -31,11 +31,13 @@ function Files() {
         var reader = new FileReader();
         const file = fileInput.files[0];
         reader.readAsDataURL(file);
-        axios.post(url, {"filename":file.name,"b64":reader.result, id}).then(
-            (response) => {
-                console.log(response)
-            }
-        ) 
+        reader.onload = function () {
+            axios.post(url, {"filename":file.name,"b64":reader.result, id}).then(
+                (response) => {
+                    console.log(response)
+                }
+            )
+        };
     }
     return (
         <div className="file">

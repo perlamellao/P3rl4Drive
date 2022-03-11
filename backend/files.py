@@ -11,7 +11,13 @@ def upload_file(file, filename):
 def get_files(id):
     files = []
     init_path = os.getcwd()
-    os.chdir("files/{}".format(id))
+    try:
+        os.chdir("files/{}".format(id))
+    except FileNotFoundError:
+        print("Usuario nuevo, creando carpeta...")
+        os.makedirs(name="files/{}".format(id))
+        os.chdir("files/{}".format(id))
+        
     for i in os.listdir():
         files.append(i)
     

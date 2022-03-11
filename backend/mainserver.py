@@ -1,12 +1,28 @@
 from flask import Flask, request, jsonify
 import hashlib
+import re
+import os
 from flask_cors import CORS
 from login import get_user
 from files import get_files
 from singup import singupap
+from base64 import b64decode
 server = Flask(__name__)
 CORS(server)
 
+
+def decode_base64(data, altchars=b'+/'):
+    """Decode base64, padding being optional.
+
+    :param data: Base64 data as an ASCII byte string
+    :returns: The decoded byte string.
+
+    """
+    data = re.sub(rb'[^a-zA-Z0-9%s]+' % altchars, b'', data)  # normalize
+    missing_padding = len(data) % 4
+    if missing_padding:
+        data += b'='* (4 - missing_padding)
+    return base64.b64decode(data, altchars)
 
 
 
@@ -31,7 +47,15 @@ def files():
 
 @server.route('/files/upload', methods=['POST'])
 def filesupload():
-    print(request.json)
+    filename = request.json['filename']
+    b64 = request.json['b64']
+    id = request.json['id']
+    b64 = b64.partition(",")[2]
+    bytes = b64decode(b64, validate=True)
+    with open("files/{}/{}".format(id, filename), 'wb') as f:
+        f.write(bytes)
+    print(b64)
+
     return("OK")
 
 
