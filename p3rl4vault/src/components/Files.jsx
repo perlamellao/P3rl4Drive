@@ -9,7 +9,7 @@ function Files() {
     const id = read_cookie('session_id')
 
     useEffect(() => {
-        axios.post(`http://127.0.0.1:8020/files`, {id}).then(
+        axios.post(`http://driveback.p3rl4.me/files`, {id}).then(
             (response) => {
                 setCards(response.data)
             }
@@ -25,7 +25,7 @@ function Files() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        const url = 'http://127.0.0.1:8020/files/upload';
+        const url = 'http://driveback.p3rl4.me/files/upload';
 
         const fileInput = document.querySelector('#formFile');
         var reader = new FileReader();
