@@ -17,7 +17,6 @@ body {
     top: 50%;
     left: 50%;
     background: #191919;
-    ;
     border-radius: 25px;
     text-align: center;
     transition: 0.25s;
@@ -29,6 +28,15 @@ body {
         left: 1%;
         
     }
+}
+.exitbutton{
+    border-radius: 24px;
+    height: 3.5rem;
+    margin-top: 0.4rem;
+    border-radius: 25px;
+    background: #191919;
+    border: 2px solid #DC3545;
+
 }
 .logo {
     height: 10rem;
@@ -48,7 +56,9 @@ body {
     color: white;
     border-radius: 24px;
     transition: 0.25s
+    
 }
+
 
 
 .box h1 {

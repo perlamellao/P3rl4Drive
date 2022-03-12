@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 import hashlib
 import re
 import os
@@ -44,6 +44,16 @@ def files():
     files = get_files(id)
     return(jsonify(files))
 
+@server.route('/getfile/<id>/<filename>', methods=['GET'])
+def getfile(id,filename):
+    return send_file("files/{}/{}".format(id, filename), attachment_filename=filename, as_attachment=True)
+
+@server.route('/delfile/<id>/<filename>', methods=['GET'])
+def delfile(id,filename):
+    os.remove("files/{}/{}".format(id, filename))
+    return("Se elimino el archivo {}".format(filename))
+
+
 
 @server.route('/files/upload', methods=['POST'])
 def filesupload():
@@ -74,4 +84,4 @@ def login():
 
 
 if __name__ == '__main__':
-    server.run(port=8020, debug=True)
+    server.run(port=8020, debug=True, host="0.0.0.0")

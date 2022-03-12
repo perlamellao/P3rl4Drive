@@ -35,20 +35,22 @@ function Files() {
             axios.post(url, {"filename":file.name,"b64":reader.result, id}).then(
                 (response) => {
                     console.log(response)
+                    window.location.reload(false)
                 }
             )
         };
+        
     }
     return (
         <div className="file">
-            <div className="modal-button">
+            <div className="">
                 <div>
-                    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#upload">
+                    <button type="button" className="btn btn-success modal-button" data-bs-toggle="modal" data-bs-target="#upload">
                         Subir archivos
                     </button>
                 </div>
                 
-                <div className="modal fade" id="upload" tabIndex={-1} aria-labelledby="popup" aria-hidden="true">
+                <div className="modal fade notShow" id="upload" tabIndex={-1} aria-labelledby="popup">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -61,7 +63,7 @@ function Files() {
                                         <label htmlFor="formFile" className="form-label">Elige el Archivo a subir</label>
                                         <input className="form-control" type="file" id="formFile"/>
                                         <div className="form-button-div">
-                                            <button type="submit" className="form-button btn btn-success">
+                                            <button type="submit" data-bs-dismiss="modal" className="form-button btn btn-success">
                                                 Aceptar
                                             </button>
                                         </div>
@@ -80,14 +82,26 @@ function Files() {
 
             <div className="row row-cols-1 row-cols-md-4 g-3 card-div">
                 {
-                    cards.map(name =>
+                    cards.map(name =>{
+                        return name.toLowerCase().endsWith(".png")|| name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".jpg") || name.toLowerCase().endsWith(".jpeg") || name.toLowerCase().endsWith(".webp") ?
                         <div className="col">
-                            <div className="card cardS">
-                                <h5 className="card-title text-center">{name}</h5>
-                                <a href="" className="text-center"><i className='bx bx-download dbutton'></i></a>
+                            <div className="card cardS col">
+                                <a className="row" href={"http://driveback.p3rl4.me/delfile/"+id+"/"+name} target="_blank" rel="noreferrer noopener"><i className='bx bxs-trash eliminar'></i></a>
+                                <img className="imge row" src={"http://driveback.p3rl4.me/getfile/"+id+"/"+name}/>
+                                <p className="card-title text-center row filename">{name}</p>
+                                <a href={"http://driveback.p3rl4.me/getfile/"+id+"/"+name} className="text-center dwnload-button row" target="_blank" rel="noreferrer noopener"><i className='bx bx-download dbutton'></i></a>
                             </div>
                         </div>
-                    )
+                        :
+                        <div className="col">
+                            <div className="card cardS">
+                                <a className="row" className="row" href={"http://driveback.p3rl4.me/delfile/"+id+"/"+name} target="_blank" rel="noreferrer noopener"><i className='bx bxs-trash eliminar'></i></a>
+                                <h5 className="card-title text-center row filename">{name}</h5>
+                                <a href={"http://driveback.p3rl4.me/getfile/"+id+"/"+name} className="text-center dwnload-button row" target="_blank" rel="noreferrer noopener"><i className='bx bx-download dbutton'></i></a>
+                            </div>
+                        </div>
+
+                    })
                 }
             </div>
         </div>

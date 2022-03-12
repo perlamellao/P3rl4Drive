@@ -31,6 +31,11 @@ function Singup() {
         bake_cookie("session_id",user)
         window.location.reload(false)
     }
+    const cancelSingup = e => {
+        e.preventDefault()
+        delete_cookie('session_id')
+        window.location.reload(false)
+    }
     return (
         <div>
             <div className="container">
@@ -43,7 +48,10 @@ function Singup() {
                             <input type="text" placeholder="Usuario" onChange={e => setUserName(e.target.value)} />
                             <input type="password" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} />
                             <input type="password" placeholder="Repite Contraseña" onChange={e => setPassword2(e.target.value)} />
-                            <input type="submit" defaultValue="Login" href="/#" />
+                            <div className="row">
+                                <button type="button" onClick={cancelSingup} className="col btn btn-danger exitbutton">Salir</button>
+                                <input className="col m-2" type="submit" defaultValue="Login" href="/#" />
+                            </div>
                         </form>
                         </div>
                     </div>

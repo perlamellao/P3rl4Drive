@@ -1,11 +1,12 @@
 .msg{
-    margin-left: 37%;
-    transform: translate(0, 0);
+    margin-left: 50%;
+    transform: translate(-50%, 0);
 }
-@media (max-width: 800px) {
+@media (max-width: 600px) {
     .msg{
-        margin-left: 5%;
-        transform: translate(35%, 0);
+        margin-left: 2rem;
+        transform: translate(0, 0);
+        text-align: center;
     }
 }
 .icon{
