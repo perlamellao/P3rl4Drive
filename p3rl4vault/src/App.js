@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom'
 import { read_cookie } from 'sfcookies'
 
-import Login from './components/Login';
-import Navbar from './components/Navbar';
-import Files from './components/Files';
-import Singup from './components/Singup';
+import Login from './components/Login/Login';
+import Navbar from './components/Navbar/Navbar';
+import Files from './components/Files/Files';
+import Singup from './components/Singup/Singup';
+import Dashboard from './components/Dashboard/Dashboard';
 
 
 function App() {
@@ -20,10 +21,13 @@ function App() {
   }
   
   return(
-    
     <BrowserRouter>
         <Navbar/>
         <Switch>
+          <Route exact path="/">
+            <Redirect to="/main" />
+          </Route>
+          <Route exact path='/main' component={Dashboard}/>
           <Route exact path='/files' component={Files}  />
           <Route exact path='/login' component={Login} />
         </Switch>
