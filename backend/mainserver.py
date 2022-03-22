@@ -7,17 +7,12 @@ from login import get_user
 from files import get_files
 from singup import singupap
 from base64 import b64decode
+from collections import Counter
 server = Flask(__name__)
 CORS(server)
 
 
 def decode_base64(data, altchars=b'+/'):
-    """Decode base64, padding being optional.
-
-    :param data: Base64 data as an ASCII byte string
-    :returns: The decoded byte string.
-
-    """
     data = re.sub(rb'[^a-zA-Z0-9%s]+' % altchars, b'', data)  # normalize
     missing_padding = len(data) % 4
     if missing_padding:
@@ -44,27 +39,59 @@ def files():
     files = get_files(id)
     return(jsonify(files))
 
+
+@server.route('/files/gettotal', methods=['POST'])
+def filestot():
+    id = request.json['id']
+    extensions = []
+    totalExtensions = []
+    init_path = os.getcwd()
+    os.chdir("files/{}".format(id))
+    size = 0
+    
+    
+    for file in os.listdir():
+        size += os.path.getsize(file)
+    
+
+    for file in os.listdir():
+        extensions.append(file.split('.')[-1])
+    extensionsCounter = Counter(extensions)
+    totalExtensions = list(extensionsCounter.values())
+    extensions = list(extensionsCounter.keys()) 
+
+    print(extensions)
+    print(totalExtensions)
+
+
+    os.chdir(init_path)
+    size = size/1024/1024
+    size = float(size)
+    size = round(size, 2)
+    size = "{} MB".format(size)
+
+    return(jsonify(totalExtensions, extensions, [size]))
+
 @server.route('/getfile/<id>/<filename>', methods=['GET'])
 def getfile(id,filename):
-    return send_file("files/{}/{}".format(id, filename), attachment_filename=filename, as_attachment=True)
+    return send_file("files/{}/{}".format(id, filename), download_name=filename, as_attachment=True)
 
 @server.route('/delfile/<id>/<filename>', methods=['GET'])
 def delfile(id,filename):
-    os.remove("files/{}/{}".format(id, filename))
-    return("Se elimino el archivo {}".format(filename))
+    try:
+        os.remove("files/{}/{}".format(id, filename))
+    except:
+        pass
+    return("""<script type='text/javascript'>self.close();</script>""")
 
 
 
-@server.route('/files/upload', methods=['POST'])
-def filesupload():
-    filename = request.json['filename']
-    b64 = request.json['b64']
-    id = request.json['id']
-    b64 = b64.partition(",")[2]
-    bytes = b64decode(b64, validate=True)
-    with open("files/{}/{}".format(id, filename), 'wb') as f:
-        f.write(bytes)
-    print(b64)
+@server.route('/files/upload/<id>', methods=['POST'])
+def filesupload(id):
+    files = request.files.getlist('file')
+    for file in files:
+        file.save("files/{}/{}".format(id, file.filename))
+
 
     return("OK")
 

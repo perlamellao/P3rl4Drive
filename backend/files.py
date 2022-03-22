@@ -2,10 +2,6 @@ import os
 
 
 
-
-
-def upload_file(file, filename):
-    pass
     
     
 def get_files(id):
