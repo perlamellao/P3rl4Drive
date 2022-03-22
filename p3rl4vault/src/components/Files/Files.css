@@ -1,0 +1,168 @@
+
+
+.cardS{
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  min-height: 15rem;
+  max-height: 15rem;
+}
+
+.dwnload-button{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0.5rem;
+}
+
+.filename{
+  position: relative;
+  width: 100%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.eliminar{
+  position: absolute;
+  left: 1rem;
+  color:red;
+}
+
+.dbutton{
+  color: #4723D9;
+  font-size: 3rem;
+}
+
+.dropbutton{
+  font-size: 3rem;
+}
+
+.spinner{
+  position: absolute;
+  margin-top: 20%;
+  left: 50%;
+}
+
+.modal{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.modal-button{
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -120%);
+}
+
+.file{
+  width: 100%;
+  height: 100vh;
+  margin-top: 1rem;
+  padding: 10rem;
+}
+
+.imge{
+  margin-top: 1.5rem;
+  max-width: 10rem;
+  max-height: 8rem;
+  
+}
+.progress{
+  margin-top: 1rem;
+}
+.upload-status{
+  margin-top: 0.5rem;
+}
+
+.modal-body{
+  padding: 2rem;
+  text-align: center;
+}
+.notShow{
+  display: none; 
+  z-index: -3124;
+}
+.fade{
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.form-label{
+  font-size: 1.5rem;
+  text-align: center;
+}
+.modal-backdrop{
+  display: none !important;
+}
+.form-button-div{
+  margin-top: 1rem;
+  width: 100%;
+  text-align: inherit;
+  
+}
+.form-button{
+  width: 100%;
+
+  margin-bottom: 10px;
+
+}
+.filename-box{
+  margin-top: 1rem;
+}
+
+.filename-input{
+  text-align: inherit;
+}
+.show{
+  display: block;
+  z-index: 12312321;
+}
+
+@media (max-width: 700px) {
+  .notShow{
+    display: none; 
+    z-index: -3124;
+  }
+  .imge{
+    margin-top: 1.5rem;
+    max-width: 8rem;
+    max-height: 6.5rem;
+  }
+  .modal-button{
+    top: 3rem;
+    left: 54%;
+    transform: translate(-50%, 0);
+  }
+  .file{
+    width: 100%;
+    height: 100vh;
+    margin-top: 1rem;
+    padding: 6rem;
+  }
+  .cardS{
+    min-height: 15rem;
+    max-height: 15rem;
+    min-width: 13rem;
+    max-width: 13rem;
+  }
+  .show{
+    display: block;
+    z-index: 12312321;
+  }
+  .modal{
+    margin-top: 5rem;
+    
+  }
+  .subir-archivos-button{
+    position: absolute;
+    left: 3.5rem;
+  }
+  .fade{
+    background-color: rgba(0,0,0,0);
+  }
+  
+  
+}
