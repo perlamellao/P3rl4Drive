@@ -1,10 +1,11 @@
-
-
+.cardS-div{
+  min-width: 15rem;
+}
 .cardS{
   position: relative;
   display: flex;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1rem;
   min-height: 15rem;
   max-height: 15rem;
 }
@@ -17,6 +18,7 @@
 
 .filename{
   position: relative;
+  font-size: medium;
   width: 100%;
   display: block;
   margin-top: auto;
@@ -122,6 +124,9 @@
 }
 
 @media (max-width: 700px) {
+  .card-div{
+    margin-top: 4rem;
+  }
   .notShow{
     display: none; 
     z-index: -3124;

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { read_cookie } from 'sfcookies'
 
 import 'chart.js/auto';
-import { Doughnut} from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 import './Dashboard.css'
 
@@ -15,7 +15,7 @@ function Dashboard({ message }) {
     const [fileTotalUploaded, setFileTotalUploaded] = useState(0)
     const id = read_cookie('session_id')
     useEffect(() => {
-        axios.post(`http://www.p3rl4.me:8020/files/gettotal`, {id}).then(
+        axios.post(`https://driveback.p3rl4.me/files/gettotal`, {id}).then(
             (response) => {
                 var files=0
                 setFiletotal(response.data[0])
@@ -58,8 +58,8 @@ function Dashboard({ message }) {
     };
     
     return (
-        <div className="container container-dashboard d-flex justify-content-md-center text-center">
-            <div className="row text-center">
+        <div className="container container-dashboard text-center">
+            <div className="row">
                 <div className="col-md-6">
                     <div className="card card-style">
                         <h2>Total archivos</h2>

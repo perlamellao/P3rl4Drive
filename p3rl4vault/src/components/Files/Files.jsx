@@ -6,10 +6,11 @@ import { read_cookie } from 'sfcookies'
 
 function Files() {
     const [cards, setCards] = useState(null)
+    const [search, setSearch] = useState("")
     const id = read_cookie('session_id')
     const[percent, setPercent] = useState('0%');
     useEffect(() => {
-        axios.post(`http://www.p3rl4.me:8020/files`, {id}).then(
+        axios.post(`https://driveback.p3rl4.me/files`, {id, search}).then(
             (response) => {
                 setCards(response.data)
             }
@@ -22,10 +23,18 @@ function Files() {
             </div>
         )
     }
-
+    function handleSearch(e) {
+        setSearch(e.target.archivo.value)
+        axios.post(`https://driveback.p3rl4.me/files`, {id, search}).then(
+            (response) => {
+                setCards(response.data)
+            }
+        )
+        e.preventDefault()
+    }
     function handleSubmit(event) {
         event.preventDefault()
-        const url = 'http://www.p3rl4.me:8020/files/upload/' + id;
+        const url = 'https://driveback.p3rl4.me/files/upload/' + id;
         const fileInput = document.querySelector('#formFile');
         const formData = new FormData();
         for (let index = 0; index < fileInput.files.length; index++) {
@@ -58,7 +67,11 @@ function Files() {
         <div className="file d-flex justify-content-center col">
             <div className="">
                 <div className="row modal-button">
-                    <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#upload" data-bs-backdrop="false">
+                    <form id="search-file" className="my-2 col d-flex search" onSubmit={handleSearch}>
+                        <input className="form-control me-2" type="search" name="archivo" placeholder="Archivo" aria-label="Search"></input>
+                        <button className="btn btn-outline-success" type="submit">Buscar</button>
+                    </form>
+                    <button type="button" className="col btn btn-success" data-bs-toggle="modal" data-bs-target="#upload" data-bs-backdrop="false">
                         Subir archivos
                     </button>
                 </div>
@@ -95,21 +108,22 @@ function Files() {
                 </div>
             </div>
 
-            <div className="row row-cols-md-6 card-div d-flex justify-content-md-center">
+            <div className="row card-div d-flex justify-content-center">
                 {
                     cards.map(name =>{
                         return name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".gif")|| name.toLowerCase().endsWith(".jpg") || name.toLowerCase().endsWith(".jpeg") || name.toLowerCase().endsWith(".webp") ?
-                        <div className="col">
+                        <div className="col cardS-div text center">
                             <div className="card cardS">
-                                <a className="row" href={"http://driveback.p3rl4.me/delfile/"+id+"/"+name} target="_blank" rel="noreferrer noopener"><i className='bx bxs-trash eliminar'></i></a>
-                                <img className="imge row" alt="" src={"http://driveback.p3rl4.me/getfile/"+id+"/"+name}/>
-                                <a href="/#" onClick={() => {window.open("http://driveback.p3rl4.me/getfile/"+id+"/"+name,'_blank'); window.location.reload(false)}} className="text-center dwnload-button row" rel="noreferrer noopener"><i className='bx bx-download dbutton'></i></a>
+                                <a className="row" href={"https://driveback.p3rl4.me/delfile/"+id+"/"+name} target="_blank" rel="noreferrer noopener"><i className='bx bxs-trash eliminar'></i></a>
+                                <img className="imge row" alt={name} src={"https://driveback.p3rl4.me/getfile/"+id+"/"+name}/>
+                                <p>{name}</p>
+                                <a href="/#" onClick={() => {window.open("https://driveback.p3rl4.me/getfile/"+id+"/"+name,'_blank'); window.location.reload(false)}} className="text-center dwnload-button row" rel="noreferrer noopener"><i className='bx bx-download dbutton'></i></a>
                             </div>
                         </div>
                         :
-                        <div className="col">
+                        <div className="col cardS-div">
                             <div className="card cardS">
-                                <a className="row" href={"http://driveback.p3rl4.me/delfile/"+id+"/"+name} target="_blank" rel="noreferrer noopener"><i className='bx bxs-trash eliminar'></i></a>
+                                <a className="row" href={"https://driveback.p3rl4.me/delfile/"+id+"/"+name} target="_blank" rel="noreferrer noopener"><i className='bx bxs-trash eliminar'></i></a>
                                 <h5 className="card-title text-center row filename">{name}</h5>
                                 <a href="/#" className="text-center dwnload-button row" onClick={() => {window.open("http://driveback.p3rl4.me/getfile/"+id+"/"+name,'_blank')}} rel="noreferrer noopener"><i className='bx bx-download dbutton'></i></a>
                             </div>

@@ -5,10 +5,12 @@ import './Navbar.css'
 function Navbar() {
     const [toggleNav, togNav] = useState("false")
     const username = read_cookie('username')
+    const id = read_cookie('session_id')
     const handleToggle = () => {
         togNav(!toggleNav)
     }
     const logout = () => {
+        delete_cookie('username')
         delete_cookie('session_id')
         bake_cookie('session_id', 'CLOSED_SESSION')
         window.location.reload(false)
@@ -17,8 +19,8 @@ function Navbar() {
         <div>
             <header className={toggleNav ? "header" : "header body-pd"} id="header">
                 <div className="header_toggle"> <i onClick={handleToggle} className={toggleNav ? "bx bx-menu" : "bx bx-x"} id="header-toggle" /></div>
-                <h3 className="col wellcome" style={{color:"black"}}>Bienvenido/a, {username}</h3> 
-                <div className="header_img"> <img src="https://i.imgur.com/hczKIze.jpg" alt="" /> </div>
+                <h3 className="col wellcome">Bienvenido/a, {username}</h3> 
+                <div className="header_img"> <img src={"https://driveback.p3rl4.me/getprofpic/"+id} alt="" /> </div>
             </header>
             <div className={toggleNav ? "l-navbar" : "l-navbar show"} id="nav-bar">
                 <nav className="nav">
@@ -47,8 +49,8 @@ function Navbar() {
                                 <i className="bx bx-folder nav_icon" />
                                 <span className="nav_name">Archivos</span>
                             </a>
-                            <a href="/#" className="nav_link"> 
-                                <i className="bx bx-grid-alt nav_icon" /> 
+                            <a href="/settings" className="nav_link"> 
+                                <i className='bx bx-wrench nav_icon'></i> 
                                 <span className="nav_name">Ajustes</span>
                             </a>
                         </div>

@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import Files from './components/Files/Files';
 import Singup from './components/Singup/Singup';
 import Dashboard from './components/Dashboard/Dashboard';
+import Settings from './components/Settings/Settings';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Redirect to="/main" />
           </Route>
           <Route exact path='/main' component={Dashboard}/>
+          <Route exact path='/settings' component={Settings}/>
           <Route exact path='/files' component={Files}  />
           <Route exact path='/login' component={Login} />
         </Switch>

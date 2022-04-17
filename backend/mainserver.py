@@ -2,22 +2,17 @@ from flask import Flask, request, jsonify, send_file
 import hashlib
 import re
 import os
+import shutil
 from flask_cors import CORS
 from login import get_user
 from files import get_files
 from singup import singupap
-from base64 import b64decode
 from collections import Counter
 server = Flask(__name__)
 CORS(server)
 
 
-def decode_base64(data, altchars=b'+/'):
-    data = re.sub(rb'[^a-zA-Z0-9%s]+' % altchars, b'', data)  # normalize
-    missing_padding = len(data) % 4
-    if missing_padding:
-        data += b'='* (4 - missing_padding)
-    return base64.b64decode(data, altchars)
+
 
 
 
@@ -27,16 +22,21 @@ def index():
 
 @server.route('/singup', methods=['POST'])
 def singup():
+    initDir=os.getcwd()
     login = request.json['credentials']
     singupap(login['username'].lower(), hashlib.sha256(login['password'].encode('utf-8')).hexdigest())
     user = get_user(login['username'].lower())
-    
+    id=str(user['_id'])
+    print("Usuario nuevo, creando carpeta...")
+    os.makedirs(name="files/{}".format(id))
+    shutil.copy(initDir+"/files/profPics/defaultPic.jpg", initDir+"/files/profPics/{}".format(id)+".jpg")
     return(str(user['_id']))
     
 @server.route('/files', methods=['POST'])
 def files():
     id = request.json['id']
-    files = get_files(id)
+    search = request.json['search']
+    files = get_files(id, search)
     return(jsonify(files))
 
 
@@ -75,6 +75,20 @@ def filestot():
 @server.route('/getfile/<id>/<filename>', methods=['GET'])
 def getfile(id,filename):
     return send_file("files/{}/{}".format(id, filename), download_name=filename, as_attachment=True)
+
+@server.route('/getprofpic/<id>', methods=['GET'])
+def getprofpic(id):
+    return send_file("files/profPics/{}.jpg".format(id), download_name=id, as_attachment=True)
+
+@server.route('/setprofpic/<id>', methods=['POST'])
+def setprofpic(id):
+    initDir=os.getcwd()
+    print("Cambiando foto de perfil...")
+    profPic = request.files.getlist("file")
+    for file in profPic:
+        file.save("files/profPics/{}.jpg".format(id))
+    return("OK")
+
 
 @server.route('/delfile/<id>/<filename>', methods=['GET'])
 def delfile(id,filename):

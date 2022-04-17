@@ -44,7 +44,6 @@ a {
     z-index: var(--z-fixed);
     transition: .5s
 }
-
 .header_toggle {
     color: var(--first-color);
     font-size: 2rem;
@@ -55,7 +54,6 @@ a {
     outline-color: var(--first-color-light);
     color: var(--first-color-light);
 }
-
 .header_img {
     width: 35px;
     height: 35px;
@@ -82,6 +80,7 @@ a {
 }
 .wellcome{ 
     font-family: 'Bungee Inline';
+    color: #24292E;
     margin-top: 0.4rem;
     font-size: 1.5rem;
 }

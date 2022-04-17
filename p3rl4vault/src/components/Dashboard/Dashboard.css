@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
 
 .container-dashboard{
-    margin-top: 5rem;
-    padding: 2rem;
     width: 100%;
     height: 100vh;
-    vertical-align: middle;
+    margin-top: 4rem;
+    padding: 5rem;
 }
 
 .donut-inner {
@@ -22,6 +21,10 @@
     position: relative;
     margin-top: auto;
     margin-bottom: auto;
+    background: linear-gradient(to right, #b92b27, #1565c0);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
 }
 
 .archivos-sub h2{
@@ -39,11 +42,9 @@
 
 @media (max-width: 700px) {
     .container-dashboard{
-        margin-top: 3rem;
+        padding: 2rem;
     }
-
-    .donut-inner h5{
-        font-size: 1rem;
-        color: black;
+    .card-style{
+        width: 100%;
     }
 }
